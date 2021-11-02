@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
-
+import { useHistory } from "react-router";
 const Card = () => {
+  const history = useHistory();
+  const describe = (id) =>{ 
+    history.push(`/Card/${id}/anything`);
+    console.log(id);
+  }
   const [cities, setcities] = useState([
     {
       id: 0,
@@ -22,14 +27,12 @@ const Card = () => {
   return (
     <div>
       <div className="cards">
-        <div className="card">
           {cities.map((item, i) => (
-            <div>
+            <div className="card" onClick={()=>{describe(`${item.id}`)}}>
               <h4>{item.name}</h4>
               <img src={item.src} alt={item.name} key={item.id}/>
             </div>
           ))}
-        </div>
       </div>
     </div>
   );
